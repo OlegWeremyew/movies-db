@@ -11,7 +11,14 @@
           <BButton size="md" block variant="outline-light">Edit</BButton>
         </div>
         <div class="col pl-2">
-          <BButton size="md" block variant="outline-light">Remove</BButton>
+          <BButton
+            size="md"
+            block
+            variant="outline-light"
+            @click="emitRemoveEvent"
+          >
+            Remove
+          </BButton>
         </div>
       </div>
     </div>
@@ -27,10 +34,22 @@ export default {
       required: true
     }
   },
+  emits: ["removeItem"],
+  methods: {
+    emitRemoveEvent() {
+      this.$emit("removeItem", {
+        id: this.movie.imdbID,
+        title: this.movie.Title
+      });
+    }
+  },
   computed: {
     posterBg() {
       return {
-        "background-image": `url(${this.movie.Poster})`
+        "background-image":
+          this.movie.Poster !== "N/A"
+            ? `url(${this.movie.Poster})`
+            : "url(https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png)"
       };
     }
   }
@@ -62,6 +81,7 @@ export default {
   background-size: cover;
   background-position: center;
   z-index: -1;
+  background-color: gray;
 }
 
 .movie-info-wrap {
