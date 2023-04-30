@@ -1,5 +1,5 @@
 <template>
-  <div id="root">
+  <div class="main">
     <Loader />
     <Notification />
     <PosterBg :poster="posterBg" />
@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style scoped>
-#root {
+.main {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
