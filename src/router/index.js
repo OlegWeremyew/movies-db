@@ -1,6 +1,7 @@
 import Router from "vue-router";
-import App from "@/App";
+import Home from "@/view/Home";
 import Vue from "vue";
+import NotFoundPage from "@/view/NotFoundPage";
 
 Vue.use(Router);
 
@@ -10,7 +11,13 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      component: App
+      name: "home",
+      component: Home
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "notFoundPAge",
+      component: NotFoundPage
     }
   ]
 });
